@@ -3,11 +3,12 @@
 function ToyCard(props){
     // const {id, image, name} = props.toy // destructuring is an option
     return(
-        <div class="card" id={`toy-${props.id}`}>
+        <div className="card" id={`toy-${props.id}`}>
             <h2>{props.name}</h2>
-            <img src={props.image} class="toy-avatar"/>
+            <img src={props.image} className="toy-avatar"/>
             <p>{props.likes} Likes </p>
-            <button class="like-btn">Like &lt;3</button>
+            <button className="like-btn">Like &lt;3</button>
+            <button onClick={() => props.delete(props.id)} className="delete">Delete</button>
         </div>
     )
 }
