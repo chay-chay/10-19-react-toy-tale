@@ -24,8 +24,20 @@ class ToysContainer extends React.Component{
             toy.name.toLowerCase().includes(this.state.search.toLowerCase()))
         }
 
-        return displayedToys.map(toy => <ToyCard toy={toy} id={toy.id} name={toy.name} image={toy.image} likes={toy.likes} />)
+        return displayedToys.map(toy => <ToyCard key={toy.id} id={toy.id} name={toy.name} image={toy.image} likes={toy.likes} delete={this.deleteToy} />)
     }
+
+    deleteToy = (id) => {
+        console.log("we did it!")
+        this.setState((prevState) => {
+            return {toys: prevState.toys.filter((toy) =>
+                toy.id !== id)
+            }
+            //all toys but one
+        })
+    // this handles only DOM update. we still need the fetch request to update the database
+    }
+
 
     // componentDidUpdate(){
     //     console.log("updatesd", this.state)
