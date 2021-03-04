@@ -12,7 +12,8 @@ class ToysContainer extends React.Component{
     state = {
         toys: [],
         search: "",
-        whatever: "hello"
+        whatever: "hello",
+        color: 'black'
     }
 
     makeToyCards(){
@@ -24,7 +25,7 @@ class ToysContainer extends React.Component{
             toy.name.toLowerCase().includes(this.state.search.toLowerCase()))
         }
 
-        return displayedToys.map(toy => <ToyCard key={toy.id} id={toy.id} name={toy.name} image={toy.image} likes={toy.likes} delete={this.deleteToy} />)
+        return displayedToys.map(toy => <ToyCard key={toy.id} id={toy.id} name={toy.name} image={toy.image} likes={toy.likes} delete={this.deleteToy} color={this.state.color}/>)
     }
 
     deleteToy = (id) => {
@@ -63,12 +64,18 @@ class ToysContainer extends React.Component{
         this.setState({search: search}) // will cause a rerender
     }
 
+    changeColor = (e) => {
+        console.log()
+        this.setState({color: e.target.value})
+    }
 
     render(){
         return(
             <div id="toy-container">
                 <div>
                     <input type="text" placeholder="Search for a toy..." onChange={this.handleInputChange}/>
+                    <input type='color' onChange={this.changeColor}></input>
+                
                 </div>
                {this.makeToyCards()}
             </div>
